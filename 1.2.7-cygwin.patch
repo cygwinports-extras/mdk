@@ -1,0 +1,13 @@
+Really, this should be handled with gmodule-export-2.0.pc
+
+--- origsrc/mdk-1.2.7/mixgtk/Makefile.am	2008-03-20 08:44:32.000000000 -0500
++++ src/mdk-1.2.7/mixgtk/Makefile.am	2013-12-30 02:29:13.001381900 -0600
+@@ -39,7 +39,7 @@ INCLUDES = -I$(includedir) -I$(top_srcdi
+ LDADD = $(top_builddir)/mixlib/libmix.a $(top_builddir)/lib/libreplace.a\
+         $(top_builddir)/mixguile/libmixguile.a $(INTLLIBS)
+ 
+-AM_LDFLAGS = -Wl,--export-dynamic
++AM_LDFLAGS = -Wl,--export-all-symbols
+ bin_PROGRAMS = gmixvm
+ gmixvm_SOURCES = gmixvm.c mixgtk.h mixgtk.c \
+                  mixgtk_config.h mixgtk_config.c \

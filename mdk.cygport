@@ -1,0 +1,37 @@
+inherit gnome2
+
+NAME="mdk"
+VERSION=1.2.7
+RELEASE=1
+CATEGORY="System"
+SUMMARY="GNU emulator of MIX and MIXAL"
+DESCRIPTION="MIX is Donald Knuth's mythical computer as described in his
+monumental work The Art Of Computer Programming.  As any of its real
+counterparts, the MIX features registers, memory cells, an overflow toggle,
+comparison flags, input-output devices, and a set of binary instructions
+executable by its virtual CPU. You can program the MIX using an assembly
+language called MIXAL, the MIX Assembly Language."
+HOMEPAGE="http://www.gnu.org/software/mdk/"
+SRC_URI="mirror://gnu/mdk/v${VERSION}/mdk-${VERSION}.tar.gz"
+PATCH_URI="
+	1.2.7-deprecations.patch
+	1.2.7-elisp.patch
+	1.2.7-cygwin.patch
+"
+
+PKG_NAMES="mdk mdk-gui"
+mdk_CONTENTS="--exclude=applications --exclude=*.glade usr/bin/mix* usr/share/"
+mdk_gui_REQUIRES="mdk"
+mdk_gui_CONTENTS="usr/bin/gmixvm.exe usr/share/applications/ usr/share/mdk/*.glade"
+
+LDFLAGS+=" -Wl,--export-all-symbols"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	make_desktop_entry gmixvm "MDK" "" "Education;ComputerScience;Emulator;GTK"
+
+	docinto samples
+	dodoc ${S}/samples/*.mixal
+}

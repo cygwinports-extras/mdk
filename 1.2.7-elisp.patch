@@ -1,0 +1,20 @@
+--- origsrc/mdk-1.2.7/configure.ac	2013-02-17 22:34:58.000000000 -0600
++++ src/mdk-1.2.7/configure.ac	2013-12-30 18:25:05.932858100 -0600
+@@ -25,6 +25,8 @@ AC_HEADER_STDC
+ AM_PROG_LEX
+ AC_PROG_RANLIB
+ 
++AM_PATH_LISPDIR
++
+ dnl additional c flags
+ AM_CFLAGS="$AM_CFLAGS -Wall -fno-strict-aliasing"
+ AC_ARG_WITH(werror,
+--- origsrc/mdk-1.2.7/misc/Makefile.am	2008-03-20 08:44:32.000000000 -0500
++++ src/mdk-1.2.7/misc/Makefile.am	2013-12-30 18:23:13.811402100 -0600
+@@ -12,5 +12,5 @@
+ 
+ EXTRA_DIST = mixvm.el mixal-mode.el
+ 
+-pkgdata_DATA = mixvm.el mixal-mode.el
++lisp_DATA = mixvm.el mixal-mode.el
+ 

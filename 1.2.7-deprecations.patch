@@ -1,0 +1,22 @@
+--- origsrc/mdk-1.2.7/configure.ac	2013-02-17 22:34:58.000000000 -0600
++++ src/mdk-1.2.7/configure.ac	2013-12-30 18:25:05.932858100 -0600
+@@ -105,7 +105,7 @@ dnl Check for glib
+ PKG_CHECK_MODULES(GLIB,glib-2.0 >= 2.0)
+ 
+ LIBS="$LIBS $GLIB_LIBS"
+-AM_CFLAGS="$AM_CFLAGS $GLIB_CFLAGS -DG_DISABLE_DEPRECATED"
++AM_CFLAGS="$AM_CFLAGS $GLIB_CFLAGS"
+ 
+ dnl Check if the gtk gui is required
+ AC_ARG_ENABLE(gui,
+@@ -124,10 +124,6 @@ PKG_CHECK_MODULES(GTK, gtk+-2.0 >= 2.6.0
+                   gui=false])
+ fi
+ 
+-if test x$gui = xtrue; then
+-AM_CFLAGS="$AM_CFLAGS -DGTK_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED"
+-fi
+-
+ dnl Are we in a darwin system?
+ case "${host_os}" in
+  darwin*) darwin_system=true;;
